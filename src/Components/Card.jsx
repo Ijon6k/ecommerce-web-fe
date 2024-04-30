@@ -1,10 +1,14 @@
 import { FaCartPlus, FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
   const { product } = props;
 
   return (
-    <div className="relative flex min-h-96 w-72 flex-col justify-between rounded-3xl border border-slate-300 bg-white p-5 drop-shadow-sm">
+    <Link
+      to={`/products/detail`}
+      className="relative flex min-h-96 w-72 flex-col justify-between rounded-3xl border border-slate-300 bg-white p-5 drop-shadow-sm"
+    >
       <img
         className="h-60 w-60 self-center  rounded-xl object-cover"
         src="src/assets/Product1.webp"
@@ -22,7 +26,7 @@ const Card = (props) => {
       <button className="absolute right-5 top-5">
         <FaRegHeart size={30} />
       </button>
-    </div>
+    </Link>
   );
 };
 
