@@ -1,11 +1,13 @@
 import DetailSection from "../Layout/DetailProductLayout/DetailSection";
+import Serupa from "../Layout/DetailProductLayout/Serupa";
 import HeaderPage from "../Layout/HeaderPage";
 
 const ProductDetail = () => {
   return (
-    <div className="h-auto min-h-screen bg-[#F3FFF3]">
+    <div className="h-full min-h-screen bg-[#EBEBEB]">
       <HeaderPage></HeaderPage>
       <DetailSection></DetailSection>
+      <Serupa></Serupa>
     </div>
   );
 };

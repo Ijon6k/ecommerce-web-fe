@@ -11,7 +11,7 @@ const DetailSection = ({ custom }) => {
   };
   return (
     <section
-      className={`m-10 h-fit min-h-screen  rounded-3xl border border-slate-300 bg-white p-16 ${custom}`}
+      className={`m-10 mb-0 h-fit min-h-screen  rounded-3xl border border-slate-300 bg-white p-16 ${custom}`}
     >
       <div className="flex h-auto w-full items-center justify-between gap-20 border-b border-slate-300 p-10">
         {/* image */}
@@ -74,6 +74,7 @@ const DetailSection = ({ custom }) => {
           </div>
 
           <div className="mt-10 flex w-full items-center justify-between ">
+            {/* MASUKKAN FUNCTION KERANJANG */}
             <button className=" rounded-full bg-greenprime p-4 font-semibold text-white">
               Tambah ke Keranjang
             </button>

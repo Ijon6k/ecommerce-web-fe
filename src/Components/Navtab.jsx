@@ -1,7 +1,7 @@
 const Navtab = ({ custom }) => {
   const Navs = [
     { id: 1, title: "Dummy Plant" },
-    { id: 2, title: "MejaKursi" },
+    { id: 2, title: "Meja & Kursi" },
     { id: 3, title: "Perabotan Dapur" },
   ];
   return (
