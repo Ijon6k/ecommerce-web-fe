@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const result = apiLogin(email, password)
+    const result = await apiLogin(email, password)
     if (result) {
       Cookies.set('access_token', result);
       navigate('/')
