@@ -12,7 +12,7 @@ const Card = (props) => {
       >
         <img
           className="h-60 w-60 self-center  rounded-xl object-cover"
-          src="src/assets/Product1.webp"
+          src={product.image_url}
           alt={product.title}
         />
         <h1 className="text min-h-10 text-3xl font-bold">{product.title}</h1>

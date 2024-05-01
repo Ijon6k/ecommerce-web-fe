@@ -4,7 +4,7 @@ import ProductSection from "../Layout/ProductSection";
 const HomePage = () => {
   return (
     <div>
-      <LandingPage></LandingPage>
+      <LandingPage ></LandingPage>
       <ProductSection></ProductSection>
     </div>
   );
