@@ -15,8 +15,7 @@ const LoginPage = () => {
     const response = await fetch(`http://127.0.0.1:5000/e-commerce/v1/login/${email}/${password}`);
     const data = await response.json();
     if (data['status_code'] === 200) {
-      const decodedToken = jwtDecode(data['result']['token']);
-      return decodedToken
+      return data['result']['token']
     } else {
       return false
     }
@@ -26,6 +25,7 @@ const LoginPage = () => {
     e.preventDefault();
     const result = await apiLogin(email, password)
     if (result) {
+      console.log(result)
       Cookies.set('access_token', result);
       navigate('/')
     }
