@@ -1,10 +1,25 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Card from "../Components/Card";
-import { Link } from "react-router-dom";
-import dataProduct from "../ContohProdukUnggulan.json";
+import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 const ProductSection = () => {
-  const products = dataProduct;
+  const [list, setList] = useState([])
+
+  useEffect(() => {
+    const getProduct = async (username) => {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      const response = await fetch(`http://127.0.0.1:5000/e-commerce/v1/product/${username}`, {
+          method: 'GET',
+          headers: headers
+      });
+      const json = await response.json();
+      setList(json.result)
+    };
+    getProduct('nexblu')
+  }, []);
+
   return (
     <section className=" h-fit w-screen  bg-[#EBEBEB] ">
       <h1 className="py-10 text-center text-4xl font-bold">Our Product</h1>
@@ -15,7 +30,7 @@ const ProductSection = () => {
         </button>
         <div className="   w-fit max-w-[1200px] gap-20 overflow-hidden   p-10 ">
           <div className="gap flex w-fit gap-20">
-            {products.map((product) => (
+            {list.map((product) => (
               <div key={product.id} className="flex justify-center">
                 <Card product={product} />
               </div>

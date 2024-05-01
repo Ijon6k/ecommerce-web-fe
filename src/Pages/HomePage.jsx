@@ -1,11 +1,10 @@
 import LandingPage from "../Layout/LandingPage";
 import ProductSection from "../Layout/ProductSection";
 
-const HomePage = (prop) => {
-  let {onLogin} = prop
+const HomePage = () => {
   return (
     <div>
-      <LandingPage onLogin={onLogin}></LandingPage>
+      <LandingPage ></LandingPage>
       <ProductSection></ProductSection>
     </div>
   );

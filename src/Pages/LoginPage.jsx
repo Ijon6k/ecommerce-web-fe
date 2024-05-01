@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-const LoginPage = (prop) => {
-  let {setOnLogin} = prop
+const LoginPage = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('')
@@ -28,7 +27,6 @@ const LoginPage = (prop) => {
       console.log(result)
       Cookies.set('access_token', result);
       navigate('/')
-      setOnLogin(true)
     }
   }
   return (
