@@ -13,7 +13,7 @@ const ProductSection = () => {
         <button className="ml-10 h-fit w-fit rounded-full bg-greenprime p-3 font-bold text-white ">
           <IoIosArrowBack size={30} />
         </button>
-        <div className="   w-fit max-w-[1000px] gap-20 overflow-hidden   p-10 ">
+        <div className="   w-fit max-w-[1200px] gap-20 overflow-hidden   p-10 ">
           <div className="gap flex w-fit gap-20">
             {products.map((product) => (
               <div key={product.id} className="flex justify-center">

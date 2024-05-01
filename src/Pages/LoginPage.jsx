@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import InputForm from "../Components/input/index.jsx";
 import WebLogo from "../Components/WebLogo.jsx";
 
 const LoginPage = () => {
@@ -12,13 +11,18 @@ const LoginPage = () => {
         <p className="my-10 font-semibold">Please enter your details</p>
         <form className=" sm:w-3/4 lg:w-4/5">
           {/* Menggunakan komponen InputForm untuk email */}
-          <InputForm label="" type="email" name="email" placeholder="Email" />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            className="mb-2 w-full rounded-full border border-black p-3 pl-8  text-lg text-slate-700 outline-none"
+          />
           {/* Menggunakan komponen InputForm untuk password */}
-          <InputForm
-            label=""
-            type="password"
+          <input
+            type="text"
             name="password"
             placeholder="Password"
+            className="mb-2 w-full rounded-full border border-black p-3 pl-8  text-lg text-slate-700 outline-none"
           />
           {/* Tombol Login */}
           <div className="mb-10 mt-5 flex items-center justify-between">

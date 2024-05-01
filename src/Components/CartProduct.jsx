@@ -7,7 +7,7 @@ const CartProduct = () => {
         <input type="checkbox" className="mr-10 h-6 w-6 rounded-md" />
         {/* <!-- image --> */}
         <img
-          src="slamet.jpg"
+          src="./src/assets/Product1.webp"
           className="mr-7 h-44 w-44 rounded-2xl bg-gray-300"
         ></img>
         {/* <!-- image --> */}
