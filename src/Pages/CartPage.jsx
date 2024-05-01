@@ -3,13 +3,13 @@ import HeaderPage from "../Layout/HeaderPage";
 
 const CartPage = () => {
   return (
-    <div className="h-full min-h-screen bg-[#EBEBEB] p-5">
+    <div className="h-full min-h-screen bg-[#EBEBEB] p-5 pb-28">
       <HeaderPage></HeaderPage>
       <h1 className="my-10 ml-10 text-4xl font-bold">Keranjang</h1>
       <section className="m-10 flex  gap-8">
         {/* main content */}
-        <div className="flex h-10 w-full flex-col justify-between gap-5 ">
-          {/* product section */}
+
+        <div className="w-screen">
           <CartProductList></CartProductList>
         </div>
         {/* main content end */}
@@ -17,7 +17,7 @@ const CartPage = () => {
         {/* SUMMARY  PRICE SECTION */}
         <div>
           {/* SUMMARY  */}
-          <div className="flex h-full min-h-96 w-96 flex-col justify-between rounded-3xl  bg-white p-10">
+          <div className="flex h-full min-h-80 w-80 flex-col justify-between rounded-3xl  bg-white p-10">
             <div>
               <h1 className="mb-5 text-2xl font-bold">Ringkasan belanja</h1>
               <div className="flex items-center justify-between border-b border-slate-300">

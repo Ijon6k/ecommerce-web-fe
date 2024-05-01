@@ -9,7 +9,7 @@ const Navtab = ({ custom }) => {
       {Navs.map((nav) => (
         <div key={nav.id} className="flex justify-center">
           <button className="text-xl font-bold text-black">{nav.title}</button>
-        </div>
+      </div>
       ))}
     </div>
   );

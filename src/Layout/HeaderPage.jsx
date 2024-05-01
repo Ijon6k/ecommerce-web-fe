@@ -3,12 +3,14 @@ import Navbar from "../Components/Navbar";
 import Navtab from "../Components/Navtab";
 import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
+import WebLogo from "../Components/WebLogo";
 
 const HeaderPage = ({ custom }) => {
   return (
     <div>
       <section className={`${custom}   h-auto w-full `}>
-        <Navbar custom="text-black" />
+        <WebLogo custom={"absolute top-12 left-14 text-xl "}></WebLogo>
+        <Navbar custom=" p-14" text="text-black" />
         <SearchBar custom={"ml-10"} />
         <div className="flex w-full items-center justify-between">
           <Navtab custom={"mt-8"}></Navtab>

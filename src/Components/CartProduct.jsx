@@ -2,7 +2,7 @@ import { FaRegHeart, FaRegTrashAlt } from "react-icons/fa";
 
 const CartProduct = () => {
   return (
-    <div className="flex h-fit w-full justify-between gap-10 rounded-bl-3xl rounded-br-3xl bg-white p-10">
+    <div className="min-w-screen flex h-fit w-full justify-between rounded-bl-3xl rounded-br-3xl bg-white p-10">
       <div className="flex">
         <input type="checkbox" className="mr-10 h-6 w-6 rounded-md" />
         {/* <!-- image --> */}
@@ -11,9 +11,9 @@ const CartProduct = () => {
           className="mr-7 h-44 w-44 rounded-2xl bg-gray-300"
         ></img>
         {/* <!-- image --> */}
-        <div className="min-h-36 w-fit min-w-40">
+        <div className="min-h-36 w-fit  ">
           <h1 className="mb-3 text-2xl font-bold ">Title Product</h1>
-          <p className="w-80 text-slate-400">
+          <p className=" w-full max-w-[500px] text-slate-400">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, rem?
           </p>
         </div>

@@ -7,7 +7,7 @@ const ProductPage = () => {
   const products = ContohDataProduk;
 
   return (
-    <section className="h-auto min-h-screen  w-full bg-[#F3FFF3] ">
+    <section className="h-auto min-h-screen  w-full bg-[#EBEBEB] ">
       <HeaderPage></HeaderPage>
       <div className="grid grid-cols-1 gap-y-20 px-5 py-8 md:grid-cols-2 xl:grid-cols-4 ">
         {products.map((product) => (
