@@ -22,7 +22,7 @@ const Navbar = (props) => {
           </Link>
         </li>
         <li>
-          <div className="rounded-3xl bg-greenprime  px-5  py-1 font-bold text-white">
+          <div className="rounded-3xl bg-greenprime    p-3 font-bold text-white">
             <MdPerson />
           </div>
         </li>
