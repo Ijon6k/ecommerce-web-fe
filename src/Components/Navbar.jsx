@@ -1,3 +1,4 @@
+import { MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
@@ -19,6 +20,11 @@ const Navbar = (props) => {
           >
             Login
           </Link>
+        </li>
+        <li>
+          <div className="rounded-3xl bg-greenprime  px-5  py-1 font-bold text-white">
+            <MdPerson />
+          </div>
         </li>
       </ul>
     </div>
