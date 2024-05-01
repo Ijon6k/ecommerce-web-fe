@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import WebLogo from "../Components/WebLogo.jsx";
 import { useState } from "react";
-import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
