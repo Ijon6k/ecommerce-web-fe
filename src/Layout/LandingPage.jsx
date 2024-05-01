@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import WebLogo from "../Components/WebLogo";
 
-const LandingPage = () => {
+const LandingPage = (prop) => {
+  let {onLogin} = prop
   return (
     <div className="h-screen w-screen bg-[url('assets/LandingPageBG.webp')] bg-cover">
       <WebLogo custom={"absolute top-10 left-10 text-xl"}></WebLogo>
-      <Navbar custom="text-black p-14"></Navbar>
+      <Navbar custom="text-black p-14" onLogin={onLogin}></Navbar>
       <div className="mt-16 flex w-full justify-center ">
         <div className="w-fit  ">
           <h1 className=" font-reguler mb-5 font-['Poller_One'] text-[70px] leading-tight text-greenprime">
