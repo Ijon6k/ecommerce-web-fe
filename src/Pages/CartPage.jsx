@@ -3,7 +3,7 @@ import HeaderPage from "../Layout/HeaderPage";
 
 const CartPage = () => {
   return (
-    <div className="h-full min-h-screen bg-[#EBEBEB] p-5 pb-28">
+    <div className="h-full min-h-screen bg-[#EBEBEB]  pb-28">
       <HeaderPage></HeaderPage>
       <h1 className="my-10 ml-10 text-4xl font-bold">Keranjang</h1>
       <section className="m-10 flex  gap-8">
