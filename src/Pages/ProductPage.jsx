@@ -15,7 +15,9 @@ const ProductPage = () => {
           headers: headers
       });
       const json = await response.json();
-      setList(json.result)
+      if (json.status_code === 200) {
+        setList(json.result)
+      }
     };
     getProduct('nexblu')
   }, []);
