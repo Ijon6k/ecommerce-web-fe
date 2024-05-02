@@ -1,8 +1,34 @@
 import { Link } from "react-router-dom";
-import InputForm from "../Components/input/index.jsx";
 import WebLogo from "../Components/WebLogo.jsx";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const apiLogin = async (email, password) => {
+    const response = await fetch(`https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/login/${email}/${password}`);
+    const data = await response.json();
+    if (data['status_code'] === 200) {
+      return data['result']['token']
+    } else {
+      return false
+    }
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const result = await apiLogin(email, password)
+    if (result) {
+      console.log(result)
+      Cookies.set('access_token', result);
+      navigate('/')
+    }
+  }
   return (
     <div className="flex h-screen max-h-screen w-screen flex-col gap-20 bg-white p-14 lg:flex-row">
       {/* Bagian untuk form */}
@@ -10,15 +36,24 @@ const LoginPage = () => {
         <h1 className="mb-10 text-4xl font-semibold">Welcome Back 👋🏻</h1>
         <WebLogo></WebLogo>
         <p className="my-10 font-semibold">Please enter your details</p>
-        <form className=" sm:w-3/4 lg:w-4/5">
+        <form className=" sm:w-3/4 lg:w-4/5" onSubmit={handleLogin}>
           {/* Menggunakan komponen InputForm untuk email */}
-          <InputForm label="" type="email" name="email" placeholder="Email" />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            className="mb-2 w-full rounded-full border border-black p-3 pl-8  text-lg text-slate-700 outline-none"
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)}
+          />
           {/* Menggunakan komponen InputForm untuk password */}
-          <InputForm
-            label=""
+          <input
             type="password"
             name="password"
             placeholder="Password"
+            className="mb-2 w-full rounded-full border border-black p-3 pl-8  text-lg text-slate-700 outline-none"
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)}
           />
           {/* Tombol Login */}
           <div className="mb-10 mt-5 flex items-center justify-between">

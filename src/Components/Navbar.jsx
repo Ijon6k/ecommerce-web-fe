@@ -1,7 +1,19 @@
+import { MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 
 const Navbar = (props) => {
   const { text = "text-white", custom } = props;
+  const [onLogin, setOnLogin] = useState(false)
+
+  useEffect(() => {
+    const accessToken = Cookies.get('access_token');
+    if (accessToken) {
+      setOnLogin(true)
+    }
+  }, []);
+
   return (
     <div className={`flex h-fit w-full  justify-end ${custom}`}>
       <ul
@@ -13,12 +25,17 @@ const Navbar = (props) => {
         <li>Blog</li>
         <li>Contact Us</li>
         <li>
-          <Link
+          {onLogin ? '' : <Link
             to="/login"
             className="rounded-3xl bg-greenprime  px-5  py-1 font-bold text-white"
           >
             Login
-          </Link>
+          </Link>}
+        </li>
+        <li>
+          {onLogin === false ? '' : <div className="rounded-3xl bg-greenprime    p-3 font-bold text-white">
+            <MdPerson />
+          </div>}
         </li>
       </ul>
     </div>
