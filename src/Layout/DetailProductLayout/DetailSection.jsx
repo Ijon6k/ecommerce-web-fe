@@ -3,8 +3,19 @@ import Product1 from "../../assets/Product1.webp";
 import { FaRegHeart } from "react-icons/fa";
 import MoreInfoProduct from "./MoreInfoProduct";
 
-const DetailSection = ({ custom }) => {
+const DetailSection = ( prop ) => {
   const [isActive, setIsActive] = useState(false);
+  const [amount, setAmount] = useState(0)
+
+  const addAmount = async () => {
+    setAmount(amount + 1)
+  }
+
+  const minAmount = async () => {
+    if (amount > 0) {
+      setAmount(amount - 1)
+    }
+  }
 
   const handleButtonClick = () => {
     setIsActive(!isActive);
@@ -67,9 +78,9 @@ const DetailSection = ({ custom }) => {
           <div className="mt-5 flex items-center justify-between">
             <p className="text-xl">Jumlah : </p>
             <div className="flex items-center rounded-3xl border border-slate-700  py-1">
-              <button className="px-4 font-normal  text-greenprime">-</button>
-              <span className="px-4 text-gray-700">0</span>
-              <button className="black px-4 text-2xl font-normal">+</button>
+              <button className="px-4 font-normal  text-greenprime" onClick={minAmount}>-</button>
+              <span className="px-4 text-gray-700">{amount}</span>
+              <button className="black px-4 text-2xl font-normal" onClick={addAmount}>+</button>
             </div>
           </div>
 

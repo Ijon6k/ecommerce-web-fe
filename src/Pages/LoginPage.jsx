@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
 
   const apiLogin = async (email, password) => {
-    const response = await fetch(`https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/login/${email}/${password}`);
+    const response = await fetch(`http://localhost:5000/e-commerce/v1/login/${email}/${password}`);
     const data = await response.json();
     if (data['status_code'] === 200) {
       return data['result']['token']
