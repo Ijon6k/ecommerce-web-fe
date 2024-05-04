@@ -10,7 +10,7 @@ const ProductSection = () => {
     const getProduct = async (username) => {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      const response = await fetch(`https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/product/${username}`, {
+      const response = await fetch(`http://127.0.0.1:5000/e-commerce/v1/product/${username}`, {
           method: 'GET',
           headers: headers
       });

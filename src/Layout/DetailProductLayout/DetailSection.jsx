@@ -11,15 +11,20 @@ const DetailSection = ({ custom }) => {
   const [notFound, setNotFound] = useState(false);
   const [isInWishlist, setOnWishlist] = useState(false);
 
+  const [amount, setAmount] = useState(0) // state amount wishlist
+  const [stock, setStock] = useState(0) // state stock product
+
+  // mengambil data dari ecommerce-api
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/product/nexblu/${id}`, // Perbaiki URL untuk mengambil detail produk berdasarkan ID
+          `http://127.0.0.1:5000/e-commerce/v1/product/nexblu/${id}`, // Perbaiki URL untuk mengambil detail produk berdasarkan ID
         );
         const json = await response.json();
         if (json.status_code === 200) {
           setProduct(json.result); // Jika berhasil, atur state untuk menyimpan detail produk
+          setStock(json.result.stock) // Jika berhasil, atur state untuk menyimpan validasi stock
         } else {
           setNotFound(true);
           console.error("Failed to fetch product:", json.message);
@@ -57,6 +62,18 @@ const DetailSection = ({ custom }) => {
       alert("dihapus ke wishlistmu!");
     }
   };
+
+  const addProduct = async () => {
+    if (amount < stock) {
+      setAmount(amount + 1)
+    }
+  }
+
+  const minProduct = async () => {
+    if (amount > 0) {
+      setAmount(amount - 1)
+    }
+  }
 
   // function menambahkan ke cart
   const addToCart = () => {
@@ -121,9 +138,9 @@ const DetailSection = ({ custom }) => {
           <div className="mt-5 flex items-center justify-between">
             <p className="text-xl">Jumlah : </p>
             <div className="flex items-center rounded-3xl border border-slate-700  py-1">
-              <button className="px-4 font-normal  text-greenprime">-</button>
-              <span className="px-4 text-gray-700">0</span>
-              <button className="black px-4 text-2xl font-normal">+</button>
+              <button className="px-4 font-normal  text-greenprime" onClick={minProduct}>-</button>
+              <span className="px-4 text-gray-700">{amount}</span>
+              <button className="black px-4 text-2xl font-normal" onClick={addProduct}>+</button>
             </div>
           </div>
 
