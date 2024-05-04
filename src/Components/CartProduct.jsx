@@ -29,7 +29,11 @@ const CartProduct = () => {
           </button>
           <div className="flex items-center rounded-xl border-2  border-slate-300 ">
             <button className="px-3 font-bold text-gray-700">-</button>
+
+            {/* JUMLAH PRODUCT TERGANTUNG DARI DATABASE  */}
             <span className="px-4 text-gray-700">0</span>
+
+
             <button className="px-3 font-bold text-greenprime">+</button>
           </div>
         </div>

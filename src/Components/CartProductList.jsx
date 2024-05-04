@@ -15,6 +15,8 @@ const CartProductList = () => {
         </div>
         <button className="text-xl font-bold text-greenprime">Hapus</button>
       </div>
+
+      {/*  LOOPING PRODUCT DISINI */}
       {/* <!-- product item end --> */}
       <CartProduct></CartProduct>
       {/* <!-- product item --> */}

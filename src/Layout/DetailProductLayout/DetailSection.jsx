@@ -1,13 +1,66 @@
-import { useState } from "react";
-import Product1 from "../../assets/Product1.webp";
-import { FaRegHeart } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import MoreInfoProduct from "./MoreInfoProduct";
+import { Navigate, useParams } from "react-router-dom";
 
 const DetailSection = ({ custom }) => {
+  // mengambil ID dari routing lalu dicari ID  API card  menggunakan params, lalu merendernya
   const [isActive, setIsActive] = useState(false);
+  const { id } = useParams(); // Terima ID produk dari URL
+  const [product, setProduct] = useState();
+  const [notFound, setNotFound] = useState(false);
+  const [isInWishlist, setOnWishlist] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/product/nexblu/${id}`, // Perbaiki URL untuk mengambil detail produk berdasarkan ID
+        );
+        const json = await response.json();
+        if (json.status_code === 200) {
+          setProduct(json.result); // Jika berhasil, atur state untuk menyimpan detail produk
+        } else {
+          setNotFound(true);
+          console.error("Failed to fetch product:", json.message);
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchData(); // Panggil fungsi untuk mengambil data produk saat komponen dimuat
+  }, [id]);
+
+  if (notFound) {
+    return <Navigate to="/404" replace={true} />; // Tampilkan pesan jika produk tidak ditemukan
+  }
+  if (!product) {
+    return (
+      <div className="my-10 flex h-96 w-full items-center justify-center  text-center text-3xl font-bold">
+        Loading...
+      </div>
+    ); // Tampilkan pesan loading jika data produk masih dimuat
+  }
 
   const handleButtonClick = () => {
     setIsActive(!isActive);
+  };
+
+  // function untuk button wishlist dan cart yang dimana nanti akan dimasukkan ke database
+
+  const wishlistToggle = () => {
+    setOnWishlist(!isInWishlist);
+    if (!isInWishlist) {
+      alert("Ditambahkan ke keranjangmu!");
+    } else {
+      alert("dihapus ke wishlistmu!");
+    }
+  };
+
+  // function menambahkan ke cart
+  const addToCart = () => {
+    alert("Added to cart");
   };
   return (
     <section
@@ -17,7 +70,7 @@ const DetailSection = ({ custom }) => {
         {/* image */}
         <div className="boor min-h-96 min-w-96 rounded-xl border p-5">
           <img
-            src={Product1}
+            src={product.image_url}
             className=" h-96 w-96 rounded-xl  object-cover object-center"
             alt=""
           />
@@ -27,18 +80,19 @@ const DetailSection = ({ custom }) => {
         <div className="w-96 ">
           {/* price and title */}
           <div className="border-b border-slate-300">
-            <h1 className="text-4xl font-bold">Product Title</h1>
-            <p className="text-sm text-slate-500">
-              Lorem ipsum dolor sit amet.
-            </p>
-            <h1 className="mb-5 mt-10 font-semibold">
+            <h1 className="text-4xl font-bold">{product.title}</h1>
+            <p className="text-sm text-slate-500">{product.description}</p>
+            <h1 className="mb-5 mt-10 flex items-start gap-1 font-semibold">
               <span className="font-sm h-full items-start">Rp</span>{" "}
-              <span className="text-3xl">999.999</span>
+              <span className="text-3xl">
+                {product.price.toLocaleString("id-ID")}
+              </span>
             </h1>
           </div>
           {/* variant */}
           <div className="h-fit border-b border-slate-300 py-3">
             <h2 className="font-semibold">Warna(2)</h2>
+
             <p className="text-sm text-greenprime">Hijau Muda</p>
             <div className="mt-5 flex w-96 gap-2 ">
               <button
@@ -47,17 +101,17 @@ const DetailSection = ({ custom }) => {
               >
                 <img
                   className="h-8 w-8 rounded-lg border border-black object-cover object-center"
-                  src={Product1}
+                  src={product.image_url}
                   alt=""
                 />
               </button>
               <button
-                className={`h-8 w-8 bg-red-50 ${isActive ? "border border-blue-500" : ""}`}
+                className={`h-8 w-8 overflow-hidden rounded-lg ${isActive ? "border border-black" : ""}`}
                 onClick={handleButtonClick}
               >
                 <img
                   className="h-8 w-8 rounded-lg border border-black object-cover object-center"
-                  src={Product1}
+                  src={product.image_url}
                   alt=""
                 />
               </button>
@@ -75,11 +129,21 @@ const DetailSection = ({ custom }) => {
 
           <div className="mt-10 flex w-full items-center justify-between ">
             {/* MASUKKAN FUNCTION KERANJANG */}
-            <button className=" rounded-full bg-greenprime p-4 font-semibold text-white">
+            <button
+              onClick={addToCart}
+              className=" rounded-full bg-greenprime p-4 font-semibold text-white"
+            >
               Tambah ke Keranjang
             </button>
-            <button className="h-fit rounded-full border border-black p-4 ">
-              <FaRegHeart size={20} />
+            <button
+              onClick={wishlistToggle}
+              className="h-fit rounded-full border border-black p-4 "
+            >
+              {isInWishlist ? (
+                <FaHeart size={30} color="red" />
+              ) : (
+                <FaRegHeart size={30} />
+              )}
             </button>
           </div>
         </div>
