@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 // require API
 const CardCluster = () => {
   // CONTOH API NYA bisa diganti sewaktu waktu atau tambah props supaya bisa di custom di page lain
-  
+
   const [list, setList] = useState([])
 
   useEffect(() => {
@@ -16,7 +16,9 @@ const CardCluster = () => {
           headers: headers
       });
       const json = await response.json();
-      setList(json.result)
+      if (json.status_code === 200) {
+        setList(json.result)
+      }
     };
     getProduct('nexblu')
   }, []);
