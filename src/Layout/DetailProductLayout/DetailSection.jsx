@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import MoreInfoProduct from "./MoreInfoProduct";
 import { Navigate, useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 const DetailSection = ({ custom }) => {
   // mengambil ID dari routing lalu dicari ID  API card  menggunakan params, lalu merendernya
@@ -13,6 +15,19 @@ const DetailSection = ({ custom }) => {
 
   const [amount, setAmount] = useState(0) // state amount wishlist
   const [stock, setStock] = useState(0) // state stock product
+
+  // state user
+  const [user, setUser] = useState({})
+  const [token, setToken] = useState('')
+
+  useEffect(() => {
+    const accessToken = Cookies.get('access_token');
+    if (accessToken) {
+      const decodedToken = jwtDecode(accessToken);
+      setToken(accessToken)
+      setUser(decodedToken)
+    }
+  }, []);
 
   // mengambil data dari ecommerce-api
   useEffect(() => {
@@ -36,6 +51,30 @@ const DetailSection = ({ custom }) => {
 
     fetchData(); // Panggil fungsi untuk mengambil data produk saat komponen dimuat
   }, [id]);
+
+  const apiAddWishList = async (username, amount, product_id) => {
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Content-Type', 'application/json')
+    const data = {
+      username: username,
+      amount: amount,
+      product_id: product_id
+    }
+    const response = await fetch('http://127.0.0.1:5000/e-commerce/v1/cart', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(
+        data
+      )
+    })
+    const resp = await response.json()
+    if (resp.status_code === 201) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   if (notFound) {
     return <Navigate to="/404" replace={true} />; // Tampilkan pesan jika produk tidak ditemukan
@@ -63,12 +102,14 @@ const DetailSection = ({ custom }) => {
     }
   };
 
+  // handler button add amount cart
   const addProduct = async () => {
     if (amount < stock) {
       setAmount(amount + 1)
     }
   }
 
+  // handler button min amount cart
   const minProduct = async () => {
     if (amount > 0) {
       setAmount(amount - 1)
@@ -76,8 +117,11 @@ const DetailSection = ({ custom }) => {
   }
 
   // function menambahkan ke cart
-  const addToCart = () => {
-    alert("Added to cart");
+  const addToCart = async () => {
+    const result = await apiAddWishList(user.username, amount, id)
+    if (result) {
+      alert("Added to cart");
+    }
   };
   return (
     <section
