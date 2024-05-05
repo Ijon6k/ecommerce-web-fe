@@ -4,7 +4,6 @@ import MoreInfoProduct from "./MoreInfoProduct";
 import { Navigate, useParams } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
-
 const DetailSection = ({ custom }) => {
   // mengambil ID dari routing lalu dicari ID  API card  menggunakan params, lalu merendernya
   const [isActive, setIsActive] = useState(false);

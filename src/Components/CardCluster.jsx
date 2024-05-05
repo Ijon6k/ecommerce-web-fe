@@ -11,9 +11,9 @@ const CardCluster = () => {
     const getProduct = async (username) => {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      const response = await fetch(`http://127.0.0.1:5000/e-commerce/v1/product/${username}`, {
-        method: 'GET',
-        headers: headers
+      const response = await fetch(`http://localhost:5000/e-commerce/v1/product/${username}`, {
+          method: 'GET',
+          headers: headers
       });
       const json = await response.json();
       if (json.status_code === 200) {
