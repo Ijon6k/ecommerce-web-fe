@@ -1,36 +1,41 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Card from "../Components/Card";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ProductSection = () => {
-  const [list, setList] = useState([])
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     const getProduct = async (username) => {
       const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      const response = await fetch(`https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/product/${username}`, {
-          method: 'GET',
-          headers: headers
-      });
+      headers.append("Content-Type", "application/json");
+      const response = await fetch(
+        `https://ecommerce-api-production-facf.up.railway.app/e-commerce/v1/product/${username}`,
+        {
+          method: "GET",
+          headers: headers,
+        },
+      );
       const json = await response.json();
       if (json.status_code === 200) {
-        setList(json.result)
+        setList(json.result);
       }
     };
-    getProduct('nexblu')
+    getProduct("nexblu");
   }, []);
 
   return (
-    <section className=" h-fit w-screen  bg-[#EBEBEB] ">
-      <h1 className="py-10 text-center text-4xl font-bold">Our Product</h1>
+    <section id="our-product" className=" h-fit w-screen  bg-[#EBEBEB] ">
+      <h1 className="py-2 text-center text-xl font-bold md:py-10 md:text-4xl">
+        Our Product
+      </h1>
 
       <div className=" flex w-full items-center justify-between ">
-        <button className="ml-10 h-fit w-fit rounded-full bg-greenprime p-3 font-bold text-white ">
+        <button className="ml-10 hidden h-fit w-fit rounded-full bg-greenprime p-3 font-bold text-white sm:block ">
           <IoIosArrowBack size={30} />
         </button>
-        <div className="   w-fit max-w-[1200px] gap-20 overflow-hidden   p-10 ">
+        <div className=" w-fit gap-20 overflow-x-auto p-2 pl-12 sm:overflow-hidden  md:max-w-[1200px] md:p-10 ">
           <div className="gap flex w-fit gap-20">
             {list.map((product) => (
               <div key={product.id} className="flex justify-center">
@@ -39,7 +44,7 @@ const ProductSection = () => {
             ))}
           </div>
         </div>
-        <button className="mr-12 h-fit w-fit rounded-full bg-greenprime p-3 text-white ">
+        <button className="mr-12 hidden h-fit w-fit rounded-full bg-greenprime p-3 text-white sm:block ">
           <IoIosArrowForward size={30} />
         </button>
       </div>

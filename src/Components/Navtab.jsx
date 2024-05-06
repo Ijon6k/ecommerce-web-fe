@@ -5,11 +5,15 @@ const Navtab = ({ custom }) => {
     { id: 3, title: "Perabotan Dapur" },
   ];
   return (
-    <div className={` ml-10 flex w-fit items-center gap-10  ${custom}`}>
+    <div
+      className={` mx-auto flex w-fit items-center gap-5 text-sm sm:ml-10 sm:gap-10  ${custom}`}
+    >
       {Navs.map((nav) => (
         <div key={nav.id} className="flex justify-center">
-          <button className="text-xl font-bold text-black">{nav.title}</button>
-      </div>
+          <button className="w-fit text-sm font-bold text-black">
+            {nav.title}
+          </button>
+        </div>
       ))}
     </div>
   );

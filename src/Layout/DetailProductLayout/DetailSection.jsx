@@ -64,20 +64,20 @@ const DetailSection = ({ custom }) => {
   };
   return (
     <section
-      className={`m-10 mb-0 h-fit min-h-screen  rounded-3xl border border-slate-300 bg-white p-16 ${custom}`}
+      className={`mb-0 mt-5 h-fit min-h-screen rounded-3xl border border-slate-300 bg-white p-5 sm:m-10 md:p-16 ${custom}`}
     >
-      <div className="flex h-auto w-full items-center justify-between gap-20 border-b border-slate-300 p-10">
+      <div className="flex h-auto w-full flex-col items-center justify-between gap-20 border-b border-slate-300 md:p-10 lg:flex-row">
         {/* image */}
-        <div className="boor min-h-96 min-w-96 rounded-xl border p-5">
+        <div className=" h-72 w-72 rounded-xl border  md:h-96 md:w-96 ">
           <img
             src={product.image_url}
-            className=" h-96 w-96 rounded-xl  object-cover object-center"
+            className=" h-64 rounded-xl object-cover object-center p-5 md:h-96 md:w-96"
             alt=""
           />
         </div>
 
         {/* detail info */}
-        <div className="w-96 ">
+        <div className="w-full lg:w-96 ">
           {/* price and title */}
           <div className="border-b border-slate-300">
             <h1 className="text-4xl font-bold">{product.title}</h1>
@@ -127,7 +127,7 @@ const DetailSection = ({ custom }) => {
             </div>
           </div>
 
-          <div className="mt-10 flex w-full items-center justify-between ">
+          <div className="mb-5 mt-10 flex w-full items-center justify-between ">
             {/* MASUKKAN FUNCTION KERANJANG */}
             <button
               onClick={addToCart}
