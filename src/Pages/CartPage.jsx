@@ -21,6 +21,7 @@ const CartPage = () => {
       const json = await response.json();
       if (json['status_code'] === 200) {
         setProduct(json['result']['item']);
+        console.table(json.result.item)
         setPrice(json['result']['total_price'])
       }
     };
