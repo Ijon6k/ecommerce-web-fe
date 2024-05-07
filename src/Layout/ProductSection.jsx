@@ -32,10 +32,10 @@ const ProductSection = () => {
       </h1>
 
       <div className=" flex w-full items-center justify-between ">
-        <button className="ml-10 hidden h-fit w-fit rounded-full bg-greenprime p-3 font-bold text-white sm:block ">
+        <button className="ml-10 hidden h-fit w-fit rounded-full bg-greenprime p-3 font-bold text-white xl:block">
           <IoIosArrowBack size={30} />
         </button>
-        <div className=" w-fit gap-20 overflow-x-auto p-2 pl-12 sm:overflow-hidden  md:max-w-[1200px] md:p-10 ">
+        <div className=" w-fit gap-20 overflow-x-auto p-2 pl-[20%] md:max-w-[1200px]  md:p-10 xl:overflow-hidden ">
           <div className="gap flex w-fit gap-20">
             {list.map((product) => (
               <div key={product.id} className="flex justify-center">
@@ -44,7 +44,7 @@ const ProductSection = () => {
             ))}
           </div>
         </div>
-        <button className="mr-12 hidden h-fit w-fit rounded-full bg-greenprime p-3 text-white sm:block ">
+        <button className="mr-12 hidden h-fit w-fit rounded-full bg-greenprime p-3 text-white xl:block">
           <IoIosArrowForward size={30} />
         </button>
       </div>
