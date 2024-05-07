@@ -65,7 +65,7 @@ const ProductPage = () => {
       {showScrollButton && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-10  right-10 h-fit w-fit  rounded-full  bg-greenprime p-5 text-white shadow-md transition duration-300 ease-in-out hover:bg-gray-600 sm:hidden"
+          className="fixed bottom-10  right-10 h-fit w-fit  rounded-full  bg-greenprime p-5 text-white shadow-md transition duration-300 ease-in-out hover:bg-gray-600 xl:hidden"
         >
           <FaArrowUp color="white" size={30} />
         </button>
